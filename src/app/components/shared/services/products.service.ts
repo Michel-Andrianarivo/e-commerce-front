@@ -15,4 +15,8 @@ export class ProductsService {
   getAllProducts(): Observable<any> {
     return this.http.get(`${this.apiUrl}/product`);
   }
+
+  getProductBySubCategory(id: string): Observable<any> {
+    return this.http.get(`${this.apiUrl}/product/category/${id}`);
+  }
 }
