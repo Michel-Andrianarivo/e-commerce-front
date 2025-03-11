@@ -1,1 +1,6 @@
-<p>sub-category works!</p>
+@for (product of subProducts; track $index) {
+<div>
+  <div class="product-name">{{ product.brands }}</div>
+  <p>{{ product.description }}</p>
+</div>
+}

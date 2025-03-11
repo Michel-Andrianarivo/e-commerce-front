@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { switchMap, tap } from 'rxjs';
+import { map, switchMap, tap } from 'rxjs';
 import { ProductsService } from '../../../../../shared/services/products.service';
 
 @Component({
@@ -14,16 +14,19 @@ export class SubCategoryComponent implements OnInit {
   private activatedRoute = inject(ActivatedRoute);
   private productService = inject(ProductsService);
 
+  public subProducts: any;
+
   ngOnInit(): void {
     this.activatedRoute.params
       .pipe(
         tap((params) => params),
         switchMap((params) =>
           this.productService.getProductBySubCategory(params['id'])
-        )
+        ),
+        map((data: any) => (this.subProducts = data))
       )
-      .subscribe((response) => {
-        console.log(response);
-      });
+      .subscribe();
+
+    console.log('DATA', this.subProducts);
   }
 }

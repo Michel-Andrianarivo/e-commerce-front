@@ -21,6 +21,20 @@ export const routes: Routes = [
           ),
       },
       {
+        path: 'bags/:id',
+        loadComponent: () =>
+          import('../product-home/sub-category/sub-category.component').then(
+            (c) => c.SubCategoryComponent
+          ),
+      },
+      {
+        path: 'bags/1',
+        loadComponent: () =>
+          import(
+            '../product-home/product-details/product-details.component'
+          ).then((c) => c.ProductDetailsComponent),
+      },
+      {
         path: 'cosmetics',
         loadComponent: () =>
           import('../product-home/cosmetics/cosmetics.component').then(
